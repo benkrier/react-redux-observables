@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "../../actions";
 
@@ -12,6 +13,7 @@ class GithubSearch extends Component {
   render() {
     return (
       <div>
+        <Link to="/">Home</Link>
         <h2>Github Search</h2>
         <input type="text" placeholder="Username" onChange={this.searchUser} />
         <p>
