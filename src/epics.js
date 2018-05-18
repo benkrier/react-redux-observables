@@ -1,7 +1,12 @@
 import "rxjs";
 import { combineEpics } from "redux-observable";
 import { FETCH_USER } from "./actionCreators";
-import { fetchUserSuccess, fetchUserFailed } from "./actions";
+import {
+  fetchUserSuccess,
+  fetchUserFailed,
+  fetchReposSuccess,
+  fetchReposFailed
+} from "./actions";
 import { ajax } from "rxjs/observable/dom/ajax";
 import { Observable } from "rxjs";
 
@@ -15,4 +20,12 @@ export const fetchUser = actions$ =>
       .catch(error => Observable.of(fetchUserFailed()))
   );
 
-export default combineEpics(fetchUser);
+export const fetchRepos = actions$ =>
+  actions$.ofType(FETCH_USER).mergeMap(action =>
+    ajax
+      .getJSON(`https://api.github.com/users/${action.payload.username}/repos`)
+      .map(repos => fetchReposSuccess(repos))
+      .catch(error => Observable.of(fetchReposFailed()))
+  );
+
+export default combineEpics(fetchUser, fetchRepos);

@@ -22,6 +22,9 @@ class GithubSearch extends Component {
         <code>
           <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
         </code>
+        <code>
+          <pre>{JSON.stringify(this.props.repos, null, 2)}</pre>
+        </code>
       </div>
     );
   }
@@ -29,7 +32,8 @@ class GithubSearch extends Component {
 
 const mapStateToProps = state => ({
   user: state.user,
-  image: state.user.avatar_url
+  image: state.user.avatar_url,
+  repos: state.repos
 });
 const mapDispatchToProps = {
   fetchUser

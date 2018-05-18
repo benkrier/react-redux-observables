@@ -2,7 +2,8 @@ import {
   FETCH_USER,
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILED,
-  FETCH_USER_REPOS
+  FETCH_REPOS_SUCCESS,
+  FETCH_REPOS_FAILED
 } from "./actionCreators";
 
 export const fetchUser = username => ({
@@ -19,7 +20,11 @@ export const fetchUserFailed = () => ({
   type: FETCH_USER_FAILED
 });
 
-export const fetchUserRepos = repos => ({
-  type: FETCH_USER_REPOS,
+export const fetchReposSuccess = repos => ({
+  type: FETCH_REPOS_SUCCESS,
   payload: { repos }
+});
+
+export const fetchReposFailed = () => ({
+  type: FETCH_REPOS_FAILED
 });
