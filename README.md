@@ -1,6 +1,6 @@
 ## Purpose
 
-This is a project started with create-react-app. In addition, it uses redux, redux-observables, react-router, and styled-components. The purpose of the build is to practice using Observables to stream data from a variety of APIs. I understand it's over-engineered. I'm building it partly for education and partly for fun.
+This is a project started with create-react-app. In addition, it uses redux, redux-observable, react-router, and styled-components. The purpose of the build is to practice using Observables to stream data from a variety of APIs. I understand it's over-engineered. I'm building it partly for education and partly for fun.
 
 ### Github Search
 

@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser } from "../../actions";
 
+import RepoListItem from "../../components/RepoListItem";
+
 class GithubSearch extends Component {
   searchUser = this.searchUser.bind(this);
 
@@ -11,6 +13,17 @@ class GithubSearch extends Component {
   }
 
   render() {
+    let repoList = "";
+    if (Array.isArray(this.props.repos)) {
+      repoList = (
+        <ul>
+          {this.props.repos.map(repo => (
+            <RepoListItem key={repo.id} {...repo} />
+          ))}
+        </ul>
+      );
+    }
+
     return (
       <div>
         <Link to="/">Home</Link>
@@ -19,11 +32,12 @@ class GithubSearch extends Component {
         <p>
           <img src={this.props.image} alt="Not Found" width={100} />
         </p>
+        {repoList}
         <code>
           <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
         </code>
         <code>
-          <pre>{JSON.stringify(this.props.repos, null, 2)}</pre>
+          <pre>{JSON.stringify(this.props.repos)}</pre>
         </code>
       </div>
     );
