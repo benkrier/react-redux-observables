@@ -1,8 +1,8 @@
 import React from "react";
 import { Route, Switch } from "react-router-dom";
 
-import Home from "./containers/Home/Home";
-import GithubSearch from "./containers/GithubSearch/GithubSearch";
+import Home from "./Home/Home";
+import GithubSearch from "./GithubSearch/GithubSearch";
 
 const FourOhFour = () => <h1>404</h1>;
 

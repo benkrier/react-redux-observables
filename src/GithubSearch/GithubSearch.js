@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchUser } from "../../actions";
+import { fetchUser } from "../actions";
 
-import RepoListItem from "../../components/RepoListItem";
+import RepoListItem from "./RepoListItem/RepoListItem";
 
 class GithubSearch extends Component {
   searchUser = this.searchUser.bind(this);
