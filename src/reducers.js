@@ -3,7 +3,7 @@ import {
   FETCH_USER_FAILED,
   FETCH_REPOS_SUCCESS,
   FETCH_REPOS_FAILED
-} from "./actionCreators";
+} from "./actions";
 import { combineReducers } from "redux";
 
 const initialState = {};

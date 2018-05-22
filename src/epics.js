@@ -1,12 +1,12 @@
 import "rxjs";
 import { combineEpics } from "redux-observable";
-import { FETCH_USER } from "./actionCreators";
+import { FETCH_USER } from "./actions";
 import {
   fetchUserSuccess,
   fetchUserFailed,
   fetchReposSuccess,
   fetchReposFailed
-} from "./actions";
+} from "./actionCreators";
 import { ajax } from "rxjs/observable/dom/ajax";
 import { Observable } from "rxjs";
 
