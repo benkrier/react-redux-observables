@@ -2,7 +2,9 @@ import {
   FETCH_USER_SUCCESS,
   FETCH_USER_FAILED,
   FETCH_REPOS_SUCCESS,
-  FETCH_REPOS_FAILED
+  FETCH_REPOS_FAILED,
+  SEARCH_USERS_SUCCESS,
+  SEARCH_USERS_FAILED
 } from "./actions";
 import { combineReducers } from "redux";
 
@@ -29,7 +31,19 @@ export const repos = (state = initialState, action) => {
       return state;
   }
 };
+
+export const searchResults = (state = initialState, action) => {
+  switch (action.type) {
+    case SEARCH_USERS_SUCCESS:
+      return action.payload.searchResults;
+    case SEARCH_USERS_FAILED:
+      return {};
+    default:
+      return state;
+  }
+};
 export default combineReducers({
   user,
-  repos
+  repos,
+  searchResults
 });

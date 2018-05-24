@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
-import { fetchUser } from "../actionCreators";
+import { fetchUser, searchUsers } from "../actionCreators";
 
 import RepoListItem from "./RepoListItem/RepoListItem";
 
@@ -9,7 +9,7 @@ class GithubSearch extends Component {
   searchUser = this.searchUser.bind(this);
 
   searchUser(event) {
-    this.props.fetchUser(event.target.value);
+    this.props.searchUsers(event.target.value);
   }
 
   render() {
@@ -29,15 +29,18 @@ class GithubSearch extends Component {
         <Link to="/">Home</Link>
         <h2>Github Search</h2>
         <input type="text" placeholder="Username" onChange={this.searchUser} />
-        <p>
+        {/* <p>
           <img src={this.props.image} alt="Not Found" width={100} />
         </p>
-        {repoList}
-        <code>
+        {repoList} */}
+        {/* <code>
           <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
+        </code> */}
+        <code>
+          <pre>{JSON.stringify(this.props.searchResults, null, 2)}</pre>
         </code>
         <code>
-          <pre>{JSON.stringify(this.props.repos)}</pre>
+          <pre>{JSON.stringify(this.props.repos, null, 2)}</pre>
         </code>
       </div>
     );
@@ -47,10 +50,12 @@ class GithubSearch extends Component {
 const mapStateToProps = state => ({
   user: state.user,
   image: state.user.avatar_url,
-  repos: state.repos
+  repos: state.repos,
+  searchResults: state.searchResults
 });
 const mapDispatchToProps = {
-  fetchUser
+  fetchUser,
+  searchUsers
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(GithubSearch);
