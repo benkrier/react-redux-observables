@@ -5,3 +5,5 @@ This is a project started with create-react-app. In addition, it uses redux, red
 ### Github Search
 
 Trying to have a search input that shows a dropdown of possible matches. Upon selection, the component will display the user avatar as well as a list of their public repos.
+
+Here it is: [https://benkrier.github.io/react-redux-observables/](https://benkrier.github.io/react-redux-observables/).
