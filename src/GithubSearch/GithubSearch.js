@@ -3,7 +3,7 @@ import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import { fetchUser, searchUsers } from "../actionCreators";
 
-import RepoListItem from "./RepoListItem/RepoListItem";
+import UserListItem from "./UserListItem/UserListItem";
 
 class GithubSearch extends Component {
   searchUser = this.searchUser.bind(this);
@@ -13,12 +13,12 @@ class GithubSearch extends Component {
   }
 
   render() {
-    let repoList = "";
-    if (Array.isArray(this.props.repos)) {
-      repoList = (
+    let userList = "";
+    if (Array.isArray(this.props.searchResults.items)) {
+      userList = (
         <ul>
-          {this.props.repos.map(repo => (
-            <RepoListItem key={repo.id} {...repo} />
+          {this.props.searchResults.items.map(item => (
+            <UserListItem key={item.id} {...item} />
           ))}
         </ul>
       );
@@ -31,17 +31,17 @@ class GithubSearch extends Component {
         <input type="text" placeholder="Username" onChange={this.searchUser} />
         {/* <p>
           <img src={this.props.image} alt="Not Found" width={100} />
-        </p>
-        {repoList} */}
+        </p> */}
+        {userList}
         {/* <code>
           <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
         </code> */}
         <code>
           <pre>{JSON.stringify(this.props.searchResults, null, 2)}</pre>
         </code>
-        <code>
+        {/* <code>
           <pre>{JSON.stringify(this.props.repos, null, 2)}</pre>
-        </code>
+        </code> */}
       </div>
     );
   }
