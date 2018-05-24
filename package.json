@@ -1,6 +1,10 @@
 {
   "name": "react-rxjs-project",
   "version": "0.1.0",
+  "description":
+    "App using react, redux, and redux-observable to stream data from a variety of APIs",
+  "keywords": ["react", "redux", "rxjs", "redux-observable"],
+  "author": "Benjamin Krier",
   "private": true,
   "homepage": "https://benkrier.github.io/react-redux-observables",
   "dependencies": {
