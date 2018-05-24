@@ -13,7 +13,7 @@ const UserListItem = props => (
 export default UserListItem;
 
 const Wrapper = styled.li`
-  width: 10%;
+  width: 44%;
   background-color: #2196f3;
   margin-bottom: 15px;
   margin-right: 10px;
@@ -27,6 +27,14 @@ const Wrapper = styled.li`
 
   p {
     text-align: center;
+  }
+
+  @media (min-width: 600px) {
+    width: 23%;
+  }
+
+  @media (min-width: 992px) {
+    width: 10%;
   }
 `;
 
