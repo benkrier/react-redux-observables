@@ -1,9 +1,16 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import { connect } from "react-redux";
+import styled from "styled-components";
 import { fetchUser, searchUsers } from "../actionCreators";
 
 import UserListItem from "./UserListItem/UserListItem";
+
+const UserList = styled.ul`
+  list-style: none;
+  display: flex;
+  flex-wrap: wrap;
+`;
 
 class GithubSearch extends Component {
   searchUser = this.searchUser.bind(this);
@@ -16,11 +23,11 @@ class GithubSearch extends Component {
     let userList = "";
     if (Array.isArray(this.props.searchResults.items)) {
       userList = (
-        <ul>
+        <UserList>
           {this.props.searchResults.items.map(item => (
             <UserListItem key={item.id} {...item} />
           ))}
-        </ul>
+        </UserList>
       );
     }
 
@@ -39,9 +46,9 @@ class GithubSearch extends Component {
         <code>
           <pre>{JSON.stringify(this.props.searchResults, null, 2)}</pre>
         </code>
-        {/* <code>
+        <code>
           <pre>{JSON.stringify(this.props.repos, null, 2)}</pre>
-        </code> */}
+        </code>
       </div>
     );
   }
