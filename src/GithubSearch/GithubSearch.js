@@ -36,19 +36,13 @@ class GithubSearch extends Component {
         <Link to="/">Home</Link>
         <h2>Github Search</h2>
         <input type="text" placeholder="Username" onChange={this.searchUser} />
-        {/* <p>
-          <img src={this.props.image} alt="Not Found" width={100} />
-        </p> */}
         {userList}
         {/* <code>
-          <pre>{JSON.stringify(this.props.user, null, 2)}</pre>
-        </code> */}
-        <code>
           <pre>{JSON.stringify(this.props.searchResults, null, 2)}</pre>
-        </code>
-        <code>
+        </code> */}
+        {/* <code>
           <pre>{JSON.stringify(this.props.repos, null, 2)}</pre>
-        </code>
+        </code> */}
       </div>
     );
   }
