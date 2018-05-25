@@ -1,13 +1,15 @@
 import "rxjs";
 import { combineEpics } from "redux-observable";
-import { FETCH_USER, SEARCH_USERS } from "./actions";
+import { FETCH_USER, SEARCH_USERS, CURRENCY_DATA } from "./actions";
 import {
   fetchUserSuccess,
   fetchUserFailed,
   fetchReposSuccess,
   fetchReposFailed,
   searchUsersSuccess,
-  searchUsersFailed
+  searchUsersFailed,
+  currencyDataSuccess,
+  currencyDataFailed
 } from "./actionCreators";
 import { ajax } from "rxjs/observable/dom/ajax";
 import { Observable } from "rxjs";
@@ -53,4 +55,26 @@ export const fetchRepos = actions$ =>
       .catch(error => Observable.of(fetchReposFailed()))
   );
 
-export default combineEpics(fetchUser, fetchRepos, searchUsers);
+// Epic to fetch a user's public repos
+export const currencyData = actions$ =>
+  actions$
+    .ofType(CURRENCY_DATA)
+    .filter(
+      action =>
+        action.payload.currencyPairs &&
+        action.payload.currencyPairs.length === 6
+    )
+    .debounceTime(1000)
+    .mergeMap(action =>
+      ajax
+        .getJSON(
+          `https://forex.1forge.com/1.0.3/quotes?pairs=${
+            action.payload.currencyPairs
+          }&api_key=LvPO0pkaenVR8hfkhmkrmbMWl0UjxLAa`
+        )
+        .map(currencyData => currencyDataSuccess(currencyData))
+        .takeUntil(actions$.ofType(CURRENCY_DATA))
+        .retry(2)
+        .catch(error => Observable.of(currencyDataFailed()))
+    );
+export default combineEpics(fetchUser, fetchRepos, searchUsers, currencyData);

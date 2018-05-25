@@ -2,39 +2,53 @@ import React, { Component } from "react";
 import { connect } from "react-redux";
 import { Link } from "react-router-dom";
 import styled from "styled-components";
+import { currencyData } from "../actionCreators";
 
-import Topbar from "./Topbar/Topbar";
-import TickerList from "./TickerList/TickerList";
+// import Topbar from "./Topbar/Topbar";
+// import TickerList from "./TickerList/TickerList";
 
 class CurrencyData extends Component {
-  state = { data: ["USD / JPY", "GBP / JPY", "EUR / JPY", "AUD / USD"] };
+  // handleAddTicker = this.handleAddTicker.bind(this);
+  testData = this.testData.bind(this);
 
-  handleAddTicker = this.handleAddTicker.bind(this);
-
-  handleAddTicker(ticker) {
-    if (!ticker) return;
-    let data = this.state.data;
-    data.push(ticker);
-    this.setState({ data: data });
+  testData(event) {
+    let currencyPair = event.target.value.toUpperCase();
+    this.props.currencyData(currencyPair);
   }
+  // handleAddTicker(ticker) {
+  //   if (!ticker) return;
+  //   let data = this.props.data;
+  //   data.push(ticker);
+  //   this.currencyData({ data: data });
+  // }
 
   render() {
     return (
       <Container>
         <HomeLink to="/">Home</HomeLink>
         <h1>React Currency Quotes</h1>
-        <Topbar addTickerFn={this.handleAddTicker} />
-        <TickerList data={this.state.data} />
+        <h3>Enter the 6 letter currency code pair.</h3>
+        {/* <Topbar addTickerFn={this.handleAddTicker} />
+        <TickerList {...this.props} /> */}
+
+        <input
+          type="text"
+          placeholder="Currency Code Pairs"
+          onChange={this.testData}
+        />
+        <code>
+          <pre>{JSON.stringify(this.props.data, null, 2)}</pre>
+        </code>
       </Container>
     );
   }
 }
 
-function mapStateToProps(state) {
-  return {};
-}
+const mapStateToProps = state => ({ data: state.currencyData });
 
-export default connect(mapStateToProps)(CurrencyData);
+const mapDispatchToProps = { currencyData };
+
+export default connect(mapStateToProps, mapDispatchToProps)(CurrencyData);
 
 const Container = styled.div`
   height: 100%;
@@ -42,11 +56,21 @@ const Container = styled.div`
   background: #02253b;
   color: #76abcc;
   font-family: sans-serif;
-  h1:hover {
+
+  code {
     color: white;
+  }
+
+  h1 {
+    margin: 10px 0;
+  }
+  h3 {
+    padding: 5px 0;
+    margin: 0;
+    color: #d4d7d9;
   }
 `;
 
-const HomeLink = styled((Link: any))`
+const HomeLink = styled(Link)`
   color: #76abcc;
 `;

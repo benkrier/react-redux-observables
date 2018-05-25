@@ -6,7 +6,10 @@ import {
   FETCH_REPOS_FAILED,
   SEARCH_USERS,
   SEARCH_USERS_SUCCESS,
-  SEARCH_USERS_FAILED
+  SEARCH_USERS_FAILED,
+  CURRENCY_DATA,
+  CURRENCY_DATA_SUCCESS,
+  CURRENCY_DATA_FAILED
 } from "./actions";
 
 // Action creators for fetching one user
@@ -47,4 +50,19 @@ export const searchUsersSuccess = searchResults => ({
 
 export const searchUsersFailed = () => ({
   type: SEARCH_USERS_FAILED
+});
+
+// Action creators for retrieving currency quotes
+export const currencyData = currencyPairs => ({
+  type: CURRENCY_DATA,
+  payload: { currencyPairs }
+});
+
+export const currencyDataSuccess = currencyData => ({
+  type: CURRENCY_DATA_SUCCESS,
+  payload: { currencyData }
+});
+
+export const currencyDataFailed = () => ({
+  type: CURRENCY_DATA_FAILED
 });

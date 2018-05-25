@@ -4,7 +4,9 @@ import {
   FETCH_REPOS_SUCCESS,
   FETCH_REPOS_FAILED,
   SEARCH_USERS_SUCCESS,
-  SEARCH_USERS_FAILED
+  SEARCH_USERS_FAILED,
+  CURRENCY_DATA_SUCCESS,
+  CURRENCY_DATA_FAILED
 } from "./actions";
 import { combineReducers } from "redux";
 
@@ -42,8 +44,21 @@ export const searchResults = (state = initialState, action) => {
       return state;
   }
 };
+
+export const currencyData = (state = initialState, action) => {
+  switch (action.type) {
+    case CURRENCY_DATA_SUCCESS:
+      return action.payload.currencyData;
+    case CURRENCY_DATA_FAILED:
+      return {};
+    default:
+      return state;
+  }
+};
+
 export default combineReducers({
   user,
   repos,
-  searchResults
+  searchResults,
+  currencyData
 });
