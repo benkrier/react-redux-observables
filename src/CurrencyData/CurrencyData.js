@@ -27,7 +27,7 @@ class CurrencyData extends Component {
       <Container>
         <HomeLink to="/">Home</HomeLink>
         <h1>React Currency Quotes</h1>
-        <h3>Enter the 6 letter currency code pair.</h3>
+        <h3>Enter the 6 letter currency code pair (ex: EURUSD).</h3>
         {/* <Topbar addTickerFn={this.handleAddTicker} />
         <TickerList {...this.props} /> */}
 
