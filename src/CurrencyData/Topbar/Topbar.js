@@ -1,7 +1,13 @@
 import React, { Component } from "react";
+import styled from "styled-components";
 
 class Topbar extends Component {
   state = { ticker: "" };
+
+  handleTickerChange = this.handleTickerChange.bind(this);
+  handleSubmitClick = this.handleSubmitClick.bind(this);
+  resetTicker = this.resetTicker.bind(this);
+  addRandoms = this.addRandoms.bind(this);
 
   handleTickerChange(event) {
     this.setState({ ticker: event.target.value });
@@ -34,29 +40,46 @@ class Topbar extends Component {
   }
   render() {
     return (
-      <div className="topBar">
+      <TopbarContainer>
         <label htmlFor="ticker">Add currency pair: </label>
-        <input
+        <Textbox
           id="ticker"
-          className="coolTextbox"
           type="text"
           value={this.state.ticker}
           onChange={this.handleTickerChange}
         />
-        <input
+        <Button type="submit" onClick={this.handleSubmitClick} />
+        <Button
           type="submit"
-          className="coolButton"
-          onClick={this.handleSubmitClick}
-        />
-        <input
-          type="submit"
-          className="coolButton"
           value="Add 100 random pairs"
           onClick={this.addRandoms}
         />
-      </div>
+      </TopbarContainer>
     );
   }
 }
 
 export default Topbar;
+
+const TopbarContainer = styled.div`
+  margin-bottom: 10px;
+`;
+
+const Textbox = styled.input`
+  border: 2px solid #02253b;
+  background: #c1e2f7;
+  color: #02253b;
+  font-weight: bold;
+`;
+
+const Button = styled.input`
+  border: 2px solid #02253b;
+  background: #063c5e;
+  color: #d4d7d9;
+  font-weight: bold;
+  padding: 2px 5px;
+
+  &:hover {
+    color: white;
+  }
+`;
