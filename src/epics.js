@@ -64,7 +64,7 @@ export const currencyData = actions$ =>
         action.payload.currencyPairs &&
         action.payload.currencyPairs.length === 6
     )
-    .debounceTime(1000)
+    // .debounceTime(1000)
     .mergeMap(action =>
       ajax
         .getJSON(
