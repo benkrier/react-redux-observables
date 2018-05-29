@@ -7,7 +7,7 @@ import routes from "./routes";
 
 const App = () => (
   <Provider store={store}>
-    <HashRouter basename={process.env.PUBLIC_URL}>
+    <HashRouter>
       <div className="App">{routes}</div>
     </HashRouter>
   </Provider>
