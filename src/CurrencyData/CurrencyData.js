@@ -5,7 +5,7 @@ import styled from "styled-components";
 import { currencyData } from "../actionCreators";
 
 // import Topbar from "./Topbar/Topbar";
-// import TickerList from "./TickerList/TickerList";
+import TickerList from "./TickerList/TickerList";
 
 class CurrencyData extends Component {
   // handleAddTicker = this.handleAddTicker.bind(this);
@@ -23,22 +23,26 @@ class CurrencyData extends Component {
   // }
 
   render() {
+    let tickerList = "";
+    if (Array.isArray(this.props.data)) {
+      tickerList = <TickerList {...this.props.data} />;
+    }
     return (
       <Container>
         <HomeLink to="/">Home</HomeLink>
         <h1>React Currency Quotes</h1>
         <h3>Enter the 6 letter currency code pair (ex: EURUSD).</h3>
-        {/* <Topbar addTickerFn={this.handleAddTicker} />
-        <TickerList {...this.props} /> */}
+        {/* <Topbar addTickerFn={this.handleAddTicker} /> */}
 
         <input
           type="text"
           placeholder="Currency Code Pairs"
           onChange={this.testData}
         />
-        <code>
+        {tickerList}
+        {/* <code>
           <pre>{JSON.stringify(this.props.data, null, 2)}</pre>
-        </code>
+        </code> */}
       </Container>
     );
   }

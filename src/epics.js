@@ -55,7 +55,7 @@ export const fetchRepos = actions$ =>
       .catch(error => Observable.of(fetchReposFailed()))
   );
 
-// Epic to fetch a user's public repos
+// Epic to fetch a currency data
 export const currencyData = actions$ =>
   actions$
     .ofType(CURRENCY_DATA)
@@ -65,6 +65,7 @@ export const currencyData = actions$ =>
         action.payload.currencyPairs.length === 6
     )
     // .debounceTime(1000)
+
     .mergeMap(action =>
       ajax
         .getJSON(
@@ -72,8 +73,8 @@ export const currencyData = actions$ =>
             action.payload.currencyPairs
           }&api_key=LvPO0pkaenVR8hfkhmkrmbMWl0UjxLAa`
         )
+
         .map(currencyData => currencyDataSuccess(currencyData))
-        .takeUntil(actions$.ofType(CURRENCY_DATA))
         .retry(2)
         .catch(error => Observable.of(currencyDataFailed()))
     );

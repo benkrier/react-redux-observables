@@ -1,65 +1,53 @@
-import React, { Component } from "react";
-import styled from "styled-components";
+import React from "react";
+import styled, { css } from "styled-components";
 
-class TickerBox extends Component {
-  state = { price: 50, prevPrice: 50 };
+const TickerBox = props => (
+  // state = { price: 50, prevPrice: 50 };
 
-  componentDidMount() {
-    let tickPrice = () => {
-      setTimeout(() => {
-        let fluct = this.state.price / 100 * Math.random(); //[0 - 1%)
-        let newPrice =
-          Math.random() < 0.5
-            ? this.state.price + fluct
-            : this.state.price - fluct;
-        this.setState({ price: newPrice, prevPrice: this.state.price });
-        tickPrice();
-      }, Math.floor(Math.random() * 500) + 500);
-    };
-    tickPrice();
-  }
+  // componentDidMount() {
+  //   let tickPrice = () => {
+  //     setTimeout(() => {
+  //       let fluct = this.state.price / 100 * Math.random(); //[0 - 1%)
+  //       let newPrice =
+  //         Math.random() < 0.5
+  //           ? this.state.price + fluct
+  //           : this.state.price - fluct;
+  //       this.setState({ price: newPrice, prevPrice: this.state.price });
+  //       tickPrice();
+  //     }, Math.floor(Math.random() * 500) + 500);
+  //   };
+  //   tickPrice();
+  // }
 
-  getClassName() {
-    return "tickerbox " + ["", "down"][+(Math.random() > 0.5)];
-  }
+  // getClassName() {
+  //   return "tickerbox " + ["", "down"][+(Math.random() > 0.5)];
+  // }
 
-  render() {
-    return (
-      <TickerBoxContainer>
-        <TickerName>{this.props.tickerName}</TickerName>
-        <TickBox>
-          {Math.abs(this.state.prevPrice - this.state.price).toFixed(2)}
-        </TickBox>
+  // render() {
+  //   return (
+  <TickerBoxContainer>
+    <TickerName>{props[0].symbol}</TickerName>
+    <TickBox>
+      {Math.abs(props[0].ask * 1000 - props[0].bid * 1000).toFixed(2)}
+    </TickBox>
 
-        <SellBuyBoxes>
-          <h2>SELL</h2>
-          <PriceSmall>
-            {(this.state.price + 0.12345).toString().substring(0, 5)}
-          </PriceSmall>
-          <PriceBig>
-            {(this.state.price + 0.12345).toString().substring(5, 7)}
-          </PriceBig>
-          <PriceSmall>
-            {(this.state.price + 0.12345).toFixed(5).substring(7, 8)}
-          </PriceSmall>
-        </SellBuyBoxes>
+    <SellBuyBoxes>
+      <h2>SELL</h2>
+      <PriceSmall>{props[0].bid.toString().substring(0, 4)}</PriceSmall>
+      <PriceBig>{props[0].bid.toString().substring(4, 6)}</PriceBig>
+      <PriceSmall>{props[0].bid.toFixed(5).substring(6, 7)}</PriceSmall>
+    </SellBuyBoxes>
 
-        <SellBuyBoxes>
-          <h2>BUY</h2>
-          <PriceSmall>
-            {(this.state.price - 0.12345).toString().substring(0, 5)}
-          </PriceSmall>
-          <PriceBig>
-            {(this.state.price - 0.12345).toString().substring(5, 7)}
-          </PriceBig>
-          <PriceSmall>
-            {(this.state.price - 0.12345).toFixed(5).substring(7, 8)}
-          </PriceSmall>
-        </SellBuyBoxes>
-      </TickerBoxContainer>
-    );
-  }
-}
+    <SellBuyBoxes>
+      <h2>BUY</h2>
+      <PriceSmall>{props[0].ask.toString().substring(0, 4)}</PriceSmall>
+      <PriceBig>{props[0].ask.toString().substring(4, 6)}</PriceBig>
+      <PriceSmall>{props[0].ask.toFixed(5).substring(6, 7)}</PriceSmall>
+    </SellBuyBoxes>
+  </TickerBoxContainer>
+);
+//   }
+// }
 
 export default TickerBox;
 
