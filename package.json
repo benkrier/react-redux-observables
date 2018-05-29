@@ -6,7 +6,7 @@
   "keywords": ["react", "redux", "rxjs", "redux-observable"],
   "author": "Benjamin Krier",
   "private": true,
-  "homepage": "https://benkrier.github.io/react-redux-observables/",
+  "homepage": "https://benkrier.github.io/react-redux-observables",
   "dependencies": {
     "autoprefixer": "7.1.6",
     "babel-core": "6.26.0",
